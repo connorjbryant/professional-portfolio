@@ -1,0 +1,136 @@
+// Brutalist blocks and projects grid
+@use 'mixins' as mixins;
+.block {
+  background: var(--block-bg);
+  border: 4px solid var(--accent-teal);
+  padding: 2rem;
+  margin: 2rem 0;
+  box-shadow: 8px 8px 0 var(--accent-blue);
+}
+
+.projects-grid.posts-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.5rem;
+  margin-top: 3rem;
+}
+
+@media (max-width: 1024px) {
+  .projects-grid.posts-grid {
+    grid-template-columns: 1fr;
+  }
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.post-card {
+  text-decoration: none;
+  color: inherit;
+}
+.post-thumb {
+  width: 100%;
+  height: 160px;
+  background: var(--block-bg);
+  border: 2px solid var(--accent-teal);
+  margin-bottom: 1.2rem;
+  background-size: cover;
+  background-position: center;
+}
+.post-card h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.5rem;
+  color: #111;
+}
+.post-card p {
+  margin: 0;
+  color: #333;
+}
+.project-card {
+  background: var(--block-bg);
+  border: 2px solid var(--accent-teal);
+  box-shadow: 8px 8px 0 var(--accent-blue);
+  padding: 2rem 1.5rem 1.5rem 1.5rem;
+  transition: box-shadow 0.2s, transform 0.2s;
+  position: relative;
+  cursor: pointer;
+  min-height: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.project-card:hover, .post-card:hover {
+  /* Fun accent border and shadow */
+  box-shadow: 0 4px 24px 0 var(--accent-orange), 0 2.5px 10px 0 var(--accent-blue);
+  border-color: var(--accent-orange);
+}
+
+.project-card:hover .project-thumb, .post-card:hover .post-thumb {
+  background: #fff !important;
+  border-color: #fff !important;
+}
+
+.project-card:hover {
+  box-shadow: 0 0 0 #111;
+  transform: translateY(-8px) scale(1.03);
+  border-color: var(--accent);
+}
+.project-thumb {
+  width: 100%;
+  height: 140px;
+  background: var(--block-bg);
+  border: 2px solid var(--accent-teal);
+  margin-bottom: 1.2rem;
+}
+.project-card h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.5rem;
+  color: #111;
+}
+.project-card p {
+  margin: 0;
+  color: #333;
+}
+
+.main__contact-title {
+  margin-bottom: 1rem;
+}
+
+.main__contact-link {
+  color: var(--accent);
+  font-weight: 500;
+  text-decoration: underline;
+  border: 2px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+}
+.main__contact-link:hover, .main__contact-link:focus {
+  color: var(--primary);
+  text-decoration: underline;
+  @include mixins.focus-outline;
+}
+
+.main__link--social {
+  color: var(--text-main);
+  font-weight: bold;
+  text-decoration: underline;
+  margin: 0 0.5rem;
+  border: 2px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+}
+.main__link--social:hover, .main__link--social:focus {
+  color: var(--accent);
+  text-decoration: underline;
+  @include mixins.focus-outline;
+}
+
+@media (max-width: 600px) {
+  .block {
+    padding: 1rem;
+  }
+  .projects-grid {
+    gap: 1.2rem;
+  }
+  .project-card {
+    padding: 1.2rem 0.7rem;
+  }
+}

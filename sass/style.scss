@@ -1,0 +1,19 @@
+// Main/* Updated color variables used throughout the site. No hardcoded colors remain. */ SCSS file for Brutalist Portfolio
+@use 'mixins' as mixins;
+@use 'header';
+@use 'nav';
+@use 'hero';
+@use 'blocks';
+@use 'typography';
+@use 'footer';
+@use 'projects';
+@use 'viewwork';
+@use 'heroscroll';
+@use 'heroscroll_mobile';
+@use 'single-post';
+@use 'main-single-pattern';
+
+@use 'base';
+@use 'jobs';
+@use 'hero-blob';
+// Add more partials as needed

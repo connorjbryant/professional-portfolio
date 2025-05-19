@@ -1,0 +1,22 @@
+// Header styles
+header {
+  background: var(--surface);
+  color: var(--text-main);
+  font-family: 'Kumbh Sans', sans-serif;
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999 !important;
+  height: 4.5rem;
+  min-height: 72px;
+  padding: 1rem;
+}
+
+
+@media (max-width: 600px) {
+  header {
+    height: 3.5rem;
+    min-height: 56px;
+  }
+}

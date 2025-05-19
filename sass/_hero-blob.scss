@@ -1,0 +1,204 @@
+.hero-lava-block {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 320px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.hero-lava-bg {
+position: absolute;
+left: 50%;
+top: 50%;
+width: 320px;
+height: 320px;
+transform: translate(-50%, -50%) scale(1.2);
+background: radial-gradient(circle at 60% 40%, var(--accent, #0a296b) 30%, #ffd6b3 60%, rgba(255,214,179,0) 100%);
+opacity: 0.3;
+filter: blur(2.5px);
+clip-path: polygon(61% 4%, 100% 34%, 85% 100%, 19% 97%, 0 44%, 35% 0);
+z-index: 0;
+pointer-events: none;
+animation: hero-lava-blob-float 8s ease-in-out infinite alternate;
+}
+
+@keyframes hero-lava-blob-float {
+0% {
+    transform: translate(-50%, -50%) scale(1.2) rotate(0deg);
+}
+50% {
+    transform: translate(-48%, -52%) scale(1.25) rotate(3deg);
+}
+100% {
+    transform: translate(-52%, -48%) scale(1.18) rotate(-2deg);
+}
+}
+
+.hero-lava-title {
+  position: relative;
+  z-index: 1;
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  color: var(--accent, #fcb07a);
+  font-weight: 700;
+  text-align: center;
+  letter-spacing: -0.03em;
+  margin: 0 auto;
+  padding: 2rem 0;
+  font-family: 'Kumbh Sans', sans-serif;
+  //text-shadow: 0 2px 24px #ffd6b3, 0 1px 8px #0a296b77;
+  display: block;
+}
+
+  
+@media (max-width: 700px) {
+.hero-lava-bg {
+    width: 180px;
+    height: 180px;
+    filter: blur(2px);
+    opacity: 0.22;
+}
+.hero-lava-title {
+    font-size: 2.2rem;
+    padding: 1.2rem 0;
+}
+.hero-blob-block.alignfull {
+    height: 180px !important;
+    min-height: auto !important;
+}
+}
+
+.hero-blob-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+
+.hero-blob-content > div {
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.hero-blob-content h1,
+.hero-lava-title {
+  margin: 0 auto;
+  text-align: center;
+  display: block;
+  @media (max-width: 900px) {
+    margin-top:2rem;
+  }
+  @media (min-width: 901px) {
+    margin-top:1rem;
+  }
+}
+
+// Hero Blob full-width WordPress block support
+.hero-blob-block.alignfull {
+  width: 100vw !important;
+  max-width: 100vw !important;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  border-radius: 0;
+  position: relative;
+  min-height: 260px;
+  background: #fff;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.hero-blob-blobs {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.hero-blob-content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-blob-inner-content {
+  max-width: var(--global-max-width, 900px);
+  width: 100%;
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+  text-align: center;
+}
+
+
+// Animated blobs background
+.hero-blob-blobs {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.hero-blob-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(32px);
+  opacity: 0.22;
+  mix-blend-mode: lighten;
+  animation-duration: 16s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+.hero-blob-blob.blob1 {
+  width: 36vw; height: 36vw;
+  min-width: 320px; min-height: 320px;
+  background: linear-gradient(135deg, var(--accent, #fcb07a) 60%, #fff8f0 100%);
+  left: 10%; top: 8%;
+  animation-name: blob1move;
+}
+.hero-blob-blob.blob2 {
+  width: 30vw; height: 30vw;
+  min-width: 220px; min-height: 220px;
+  background: #ffd6b3;
+  left: 60%; top: 18%;
+  animation-name: blob2move;
+  animation-delay: 2s;
+}
+.hero-blob-blob.blob3 {
+  width: 28vw; height: 28vw;
+  min-width: 180px; min-height: 180px;
+  background: #fff2e0;
+  left: 35%; top: 60%;
+  animation-name: blob3move;
+  animation-delay: 4s;
+}
+@keyframes blob1move {
+  0%   { transform: scale(1) translateY(0); }
+  40%  { transform: scale(1.12, 0.95) translateY(-20px); }
+  60%  { transform: scale(0.98, 1.1) translateY(10px); }
+  100% { transform: scale(1) translateY(0); }
+}
+@keyframes blob2move {
+  0%   { transform: scale(1) translateY(0); }
+  40%  { transform: scale(1.08, 1.02) translateY(16px); }
+  60%  { transform: scale(1.02, 0.96) translateY(-12px); }
+  100% { transform: scale(1) translateY(0); }
+}
+@keyframes blob3move {
+  0%   { transform: scale(1) translateY(0); }
+  40%  { transform: scale(0.93, 1.08) translateY(-18px); }
+  60%  { transform: scale(1.09, 0.92) translateY(14px); }
+  100% { transform: scale(1) translateY(0); }
+}

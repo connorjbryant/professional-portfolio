@@ -1,0 +1,239 @@
+// Styles for the single post page to match project detail design
+
+body.wp-singular {
+  background-color: white;
+  overflow: visible;
+}
+
+
+
+
+
+.single-post-featured-image {
+  display: block;
+  max-width: 850px;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+
+  margin-top: 1rem;
+}
+
+
+.single-post {
+  width: 100%;
+  //max-width: 1400px;
+  margin: 0 auto;
+  padding: 0;
+  background: white;
+  position: relative;
+  z-index: 1;
+}
+
+
+
+
+
+.single-post > * {
+  position: relative;
+  z-index: 1;
+}
+
+.single-post > * {
+  position: relative;
+  z-index: 1;
+}
+
+
+
+
+// @media (min-width: 900px) {
+//   .single-post {
+//     max-width: 850px;
+//   }
+// }
+
+
+.single-post__container {
+  width: 100%;
+  max-width: 850px;
+  margin: 0 auto;
+  background: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+  position: relative;
+}
+
+@media (max-width: 900px) {
+  .single-post__container {
+    width: 100%;
+    max-width: none;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+.single-post__header {
+  width: 100%;
+  text-align: left;
+  padding-bottom: 2rem;
+}
+
+.single-post__title {
+  text-align: left;
+  font-size: 2.5rem;
+  color: var(--primary);
+  letter-spacing: 2px;
+  font-weight: 700;
+  padding-bottom: 0.5rem;
+  position: relative;
+}
+
+.single-post__media {
+  width: 100%;
+  padding-bottom: 2.5rem;
+  /* Remove centering, let image fill column */
+}
+
+.single-post__media-wrapper {
+  width: 100%;
+  max-width: none;
+  aspect-ratio: unset;
+  background: #fff;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  display: block;
+  /* Remove flex centering, let image fill */
+}
+
+.single-post__media-wrapper img,
+.single-post__media-wrapper video {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  max-height: 80vh;
+  object-fit: contain;
+  display: block;
+  image-rendering: auto;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
+.single-post__about {
+  width: 100%;
+  padding-bottom: 2.5rem;
+}
+
+.single-post__about-label {
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.09em;
+  padding-bottom: 0.6em;
+  font-size: 1.08rem;
+}
+
+.single-post__body {
+  color: var(--text-main);
+  font-size: 1.07rem;
+  line-height: 1.7;
+  padding-bottom: 1.2em;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  text-align: left;
+}
+
+.single-post__skills {
+  width: 100%;
+  padding-top: 2.2rem;
+  text-align: left;
+}
+
+.single-post__skills-label {
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.09em;
+  padding-bottom: 0.5em;
+  font-size: 1.08rem;
+}
+
+.single-post__skills-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em 1em;
+  padding-bottom: 0.5em;
+}
+
+.single-post__skill {
+  display: inline-block;
+  background: #edeaff;
+  color: #3d348b;
+  padding: 0.3em 1em;
+  font-size: 0.97em;
+  border-radius: 0.2em;
+  margin-bottom: 0.2em; /* Keep small margin for wrapping */
+}
+
+.single-post__about-title {
+  text-align: left;
+  font-size: 1.6rem;
+  color: var(--primary);
+  letter-spacing: 1.2px;
+  font-weight: 700;
+  padding-bottom: 0.4rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0.8rem;
+  position: relative;
+}
+
+@media (max-width: 700px) {
+  .single-post__about-title {
+    font-size: 1.15rem;
+  }
+}
+
+// --- Details Section (Skills & Tech Combined) ---
+.single-post__details {
+  width: 100%;
+  padding-top: 2.2rem;
+  text-align: left;
+}
+
+.single-post__details-label {
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.09em;
+  padding-bottom: 0.5em;
+  font-size: 1.08rem;
+}
+
+.single-post__details-text {
+  color: var(--text-main);
+  font-size: 1.07rem;
+  line-height: 1.7;
+  padding-bottom: 0.5em;
+}
+
+@media (max-width: 700px) {
+  .single-post__container {
+    width: 100%;
+    max-width: none;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .single-post__title {
+    font-size: 1.5rem;
+  }
+
+  .single-post__media-wrapper {
+    width: 100%;
+    max-width: none;
+    height: 170px;
+  }
+}

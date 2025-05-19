@@ -1,0 +1,13 @@
+.main__view-work-btn {
+  position: relative;
+  transition: background 0.2s, color 0.2s;
+  .main__view-work-arrow {
+    transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+    will-change: transform;
+    display: inline-block;
+  }
+  &:hover .main__view-work-arrow,
+  &:focus .main__view-work-arrow {
+    transform: translateY(7px) scale(1.15);
+  }
+}

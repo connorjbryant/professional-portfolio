@@ -1,0 +1,29 @@
+.main__hero-scroll-link {
+  color: var(--accent, #2D336B);
+  font-size: 1.2rem;
+  text-decoration: underline;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.2s;
+  display: inline-flex;
+  align-items: center;
+  .main__hero-scroll-arrow {
+    display: inline-block;
+    margin-left: 0.5em;
+    animation: hero-scroll-bounce 1.2s infinite cubic-bezier(0.4,0,0.2,1);
+    will-change: transform;
+  }
+  &:hover, &:focus {
+    color: var(--primary, #7886C7);
+    text-decoration-thickness: 2px;
+  }
+}
+
+@keyframes hero-scroll-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(8px); }
+}

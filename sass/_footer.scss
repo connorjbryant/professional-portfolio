@@ -1,0 +1,83 @@
+// Footer styles
+footer {
+  width: 100%;
+  background: #fff;
+  color: #232946;
+  font-family: 'Kumbh Sans', sans-serif;
+  text-align: center;
+  font-size: 1rem;
+  margin-top: 2rem;
+  padding: 1.5rem 0 1rem 0;
+  box-sizing: border-box;
+}
+
+// Remove special-case full-width and margin hacks
+// Keep footer simple and consistent across all templates
+
+.footer__social {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.2rem;
+  margin-top: 0.5rem;
+}
+
+.footer__icon {
+  color: #232946;
+  font-size: 1.6rem;
+  transition: color 0.2s;
+  text-decoration: none;
+}
+.footer__icon:hover {
+  color: var(--accent);
+}
+
+
+
+
+footer p {
+  margin: 0;
+  color: inherit;
+  font-size: 1rem;
+}
+
+
+
+
+html, body {
+  overflow-x: hidden;
+}
+
+body {
+  padding-bottom: 70px; /* height of footer so content never hidden */
+}
+
+
+// Remove unnecessary flexbox hacks
+html, body {
+  height: auto;
+}
+body {
+  min-height: 0;
+  display: block;
+}
+.main, main {
+  flex: unset;
+}
+footer {
+  flex-shrink: unset;
+}
+
+
+.social-links a {
+  color: #111;
+  font-weight: bold;
+  margin: 0 0.5rem;
+  text-decoration: underline;
+  transition: color 0.2s;
+}
+.social-links a:hover {
+  color: var(--accent);
+}
+
+

@@ -1,0 +1,41 @@
+.main__hero-scroll-link {
+  @media (max-width: 700px) {
+    font-size: 1.25rem;
+    margin-top: 1.2rem;
+    margin-bottom: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .main__hero-scroll-arrow {
+      margin-left: 0;
+      margin-top: 0.2em;
+      svg {
+        width: 1.5em;
+        height: 1.5em;
+      }
+    }
+  }
+}
+
+.main__hero {
+  @media (max-width: 700px) {
+    padding-top: 0rem;
+    padding-bottom: 1.5rem;
+  }
+}
+
+.main__hero-portrait {
+  @media (max-width: 700px) {
+    width: 170px;
+    height: 170px;
+    margin-bottom: 0.5rem;
+  }
+}
+
+.main__hero-bio-line {
+  @media (max-width: 700px) {
+    font-size: 1.75rem;
+    line-height: 1.25;
+    margin-bottom: 0.7rem;
+  }
+}
