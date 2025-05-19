@@ -1,0 +1,190 @@
+// Base styles (reset, root, body, etc.)
+@use 'mixins' as mixins;
+
+:root {
+  /* Single fun accent: teal */
+  --surface: #fff;
+  /* main background */
+  --surface-rgb: 255, 255, 255;
+  --background: #fff;
+  /* secondary background */
+  --background-rgb: 255, 255, 255;
+  --primary: #232946;
+  /* deep navy for headings/text */
+  --primary-rgb: 35, 41, 70;
+  --accent: #0a296b;
+  /* deep blue accent for all highlights */
+  --accent-rgb: 10, 41, 107;
+  --block-bg: #F8F8F8;
+  /* light gray for blocks/cards */
+  --text-main: #232946;
+  --text-main-rgb: 35, 41, 70;
+  --text-light: #0a296b;
+  --text-light-rgb: 10, 41, 107;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+:focus {
+  @include mixins.focus-outline;
+}
+
+
+body {
+  background: var(--surface);
+  color: var(--text-main);
+  font-family: 'Kumbh Sans', sans-serif;
+  margin: 0;
+  padding: 0;
+  font-size: 18px;
+  line-height: normal;
+}
+
+
+
+.site-wrap {
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  position: relative;
+  z-index: 1;
+  background: var(--surface);
+}
+
+
+
+body.single .site-wrap {
+  position: relative;
+  z-index: 1;
+  background: transparent;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+@media (max-width: 1024px) {
+  body.single .site-wrap {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+body.single .site-wrap > * {
+  position: relative;
+  z-index: 1;
+}
+
+body.single main {
+  padding: 0;
+}
+
+@media (max-width: 1024px) {
+  .site-wrap {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .site-wrap {
+    padding-left: 0.4rem;
+    padding-right: 0.4rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  body {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+}
+
+section {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+main {
+  padding: 1rem;
+  background: var(--surface);
+
+  @media screen and (max-width: 1024px) {
+    padding: 0rem;
+  }
+}
+
+body.single main {
+  position: relative;
+  background: none;
+  z-index: 1;
+  /* overflow: visible; */
+}
+
+body.single main {
+  position: relative;
+  z-index: 1;
+  background: none;
+}
+
+.pattern-bg {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 100vw;
+  height: 100%;
+  margin-left: -50vw;
+  z-index: -1;
+  background-color: #fff;
+  background-image:
+    repeating-linear-gradient(to right, transparent, transparent 19px, #e5e5e5 20px),
+    repeating-linear-gradient(to bottom, transparent, transparent 19px, #e5e5e5 20px);
+  background-size: 20px 20px;
+  background-size: 480px 480px;
+  background-position: 0 0;
+  background-repeat: repeat;
+  background-repeat: repeat;
+  pointer-events: none;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
+}
+
+.yellow-bg-area {
+  background-color: #ffc982;
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='15' cy='15' r='6' fill='%23ffe6fa'/%3E%3Crect x='36' y='10' width='10' height='10' fill='%23d1f7ff' transform='rotate(18 41 15)'/%3E%3Cpolygon points='50,50 55,58 45,58' fill='%23ffe9b3'/%3E%3Cpath d='M8,44 Q12,40 16,44' stroke='%23f9d4d4' stroke-width='2' fill='none'/%3E%3C/svg%3E");
+  background-size: 60px 60px;
+  background-repeat: repeat;
+}
+
+.responsive-br {
+  @media screen and (min-width: 1024px) {
+    display: none;
+  }
+}
+
+.border-image {
+  border: 1px solid black;
+}
+
+.post-heading {
+  padding: 0;
+  margin: 0;
+  text-align: left;
+}
+
+.responsive-image {
+  @media screen and (max-width: 900px) {
+    max-width: 300px;
+  }
+}
+
+.has-zero-space {
+  padding: 0;
+  margin: 0;
+}
