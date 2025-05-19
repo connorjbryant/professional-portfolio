@@ -1,0 +1,16 @@
+{
+  "apiVersion": 2,
+  "name": "brutalist-portfolio/hero-blob",
+  "title": "Hero Blob",
+  "category": "layout",
+  "icon": "universal-access-alt",
+  "description": "A custom hero section with a blob/lava effect.",
+  "keywords": ["hero", "blob", "lava", "section"],
+  "supports": {
+    "html": false,
+    "align": ["full", "wide", "center"]
+  },
+  "textdomain": "brutalist-portfolio",
+  "editorScript": "file:./editor.js",
+  "render": "file:./render.php"
+}
