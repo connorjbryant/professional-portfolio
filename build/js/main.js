@@ -86,4 +86,6 @@ jQuery(document).ready(function($){
     }).join(' ');
     $details.html(html);
   }
+
+  console.log("active theme");
 });

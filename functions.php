@@ -1,28 +1,53 @@
 <?php
 
 function brutalist_portfolio_enqueue_styles_scripts() {
-  // AOS CSS
-  wp_enqueue_style('aos', 'https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css', array(), null);
-  // AOS JS
-  wp_enqueue_script('aos', 'https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js', array(), null, true);
 
-  // (Removed default style.css enqueue, using compiled CSS instead)
+    // AOS CSS
+    wp_enqueue_style(
+        'aos',
+        'https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css',
+        array(),
+        null
+    );
 
-  // Enqueue jQuery (bundled with WordPress)
-  wp_enqueue_script('jquery');
+    // Compiled theme CSS
+    wp_enqueue_style(
+        'brutalist-portfolio-style',
+        get_template_directory_uri() . '/build/css/style.min.css',
+        array('aos'),
+        filemtime(get_template_directory() . '/build/css/style.min.css')
+    );
 
-  // Main JS file
-  wp_enqueue_script('brutalist-main', get_template_directory_uri() . '/js/main.js', array('jquery'), null, true);
+    // jQuery
+    wp_enqueue_script('jquery');
 
-  // Jobs Accordion JS (load in footer)
-  wp_enqueue_script('jobs-accordion', get_template_directory_uri() . '/js/jobs-accordion.js', array('jquery'), null, true);
+    // AOS JS
+    wp_enqueue_script(
+        'aos',
+        'https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js',
+        array(),
+        null,
+        true
+    );
 
-  // Custom Gutenberg block JS (if needed)
-  wp_enqueue_script('brutalist-blocks', get_template_directory_uri() . '/js/custom-blocks.js', array('wp-blocks', 'wp-element', 'wp-editor', 'jquery'), null, true);
+    // Compiled theme JS
+    wp_enqueue_script(
+        'theme-main',
+        get_template_directory_uri() . '/build/js/main.min.js',
+        array('jquery', 'aos'),
+        filemtime(get_template_directory() . '/build/js/main.min.js'),
+        true
+    );
 
-  // (Removed block style enqueue, not needed unless you have custom block CSS)
+    // Only keep this separate if it is NOT included in your compiled build
+    wp_enqueue_script(
+        'jobs-accordion',
+        get_template_directory_uri() . '/js/jobs-accordion.js',
+        array('jquery'),
+        filemtime(get_template_directory() . '/js/jobs-accordion.js'),
+        true
+    );
 }
-
 add_action('wp_enqueue_scripts', 'brutalist_portfolio_enqueue_styles_scripts');
 
 function brutalist_portfolio_setup() {
@@ -34,12 +59,6 @@ function brutalist_portfolio_setup() {
   ]);
 }
 add_action('after_setup_theme', 'brutalist_portfolio_setup');
-
-function brutalist_portfolio_enqueue_assets() {
-    wp_enqueue_style('brutalist-portfolio-style', get_template_directory_uri() . '/build/css/style.min.css', array(), null);
-    wp_enqueue_script('theme-main', get_template_directory_uri() . '/build/js/main.min.js', array(), null, true);
-}
-add_action('wp_enqueue_scripts', 'brutalist_portfolio_enqueue_assets');
 
 // Register and enqueue hero-blob block editor.js for Gutenberg
 function brutalist_portfolio_register_block_editor_assets() {
