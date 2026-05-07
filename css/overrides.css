@@ -56,7 +56,8 @@
 .wp-block-code.code-php::before,
 .wp-block-code.code-js::before,
 .wp-block-code.code-css::before,
-.wp-block-code.code-html::before {
+.wp-block-code.code-html::before,
+.wp-block-code.code-terminal::before {
     position: absolute;
     top: 0.75rem;
     right: 0.75rem;
@@ -98,6 +99,14 @@
     background: #ea580c; /* nice orange */
     color: #fff;
 	opacity: 0.5;
+}
+
+/* CMD (black) */
+.wp-block-code.code-terminal::before {
+    content: "CLI";
+    background: #000000;
+    color: #fff;
+		opacity: 0.5;
 }
 
 /* ================================
