@@ -1,4 +1,5 @@
 <?php get_header(); ?>
+
 <div style="height: 6.5rem;"></div> <!-- Spacer for fixed nav -->
 <main class="main" aria-label="Main content">
   <!-- Hero Section -->
@@ -8,8 +9,8 @@
     </div>
     <div class="main__hero-content">
       <div class="main__hero-bio">
-        <h1 class="main__hero-greeting" data-aos="fade-up" data-aos-delay="0" aria-label="Hero greeting">Hello.</h1>
-        <h2 class="main__hero-subtitle" data-aos="fade-up" data-aos-delay="200" aria-label="Hero description">I create memorable web experiences using my skills in: <span class="responsive-br"><br /></span><span id="typewriter"></span></h2>
+        <h1 class="main__hero-greeting" data-aos="fade-up" data-aos-delay="0" aria-label="Hero greeting">Hello.<p class="visually-hidden">I'm a website developer who bridges creativity and technology to bring ideas online.</p></h1>
+        <h2 class="main__hero-subtitle" data-aos="fade-up" data-aos-delay="200" aria-label="Hero description">I create memorable web experiences using my skills in: <span class="responsive-br"><br /></span><span id="typewriter">CMS development, web design, performance optimization, user experience, and web accessibility.</span></h2>
       </div>
     </div>
   </section>

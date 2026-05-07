@@ -1,10 +1,15 @@
 <!DOCTYPE html>
-<html <?php language_attributes(); ?>>
+<html <?php language_attributes(); ?> class="no-js">
 <head>
   <meta charset="<?php bloginfo('charset'); ?>">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <?php wp_head(); ?>
+	<script>
+    // Flip as early as possible
+    document.documentElement.classList.remove('no-js');
+    document.documentElement.classList.add('has-js');
+  </script>
 </head>
 <body <?php body_class(); ?>>
 <header>
@@ -14,7 +19,7 @@
     </div>
     <nav class="nav-right" role="navigation" aria-label="Main navigation">
     <a href="/about" class="nav-link" aria-label="About section" role="button">About</a>
-      <a href="/wp-content/uploads/2025/05/Resume-C-Bryant.pdf" class="nav-link" target="_blank" aria-label="Resume section" role="button">Resume</a>
+      <a href="/wp-content/uploads/2026/03/Resume—Connor-Bryant.pdf" class="nav-link" target="_blank" aria-label="Resume section" role="button">Resume</a>
     </nav>
 
   </div>
