@@ -87,5 +87,43 @@ jQuery(document).ready(function($){
     $details.html(html);
   }
 
-  console.log("active theme");
+  /* Custom anchor link scrolling */
+  var offset = 125;
+
+  // Handle clicks on anchor links
+  $('a[href^="#"]').not('[href="#"]').on('click', function(e) {
+      var $target = $($(this).attr('href'));
+      
+      if ($target.length) {
+          e.preventDefault();
+          e.stopImmediatePropagation();
+
+          var scrollTo = $target.offset().top - offset;
+
+          $('html, body').stop(true).animate({
+              scrollTop: scrollTo
+          }, 700, 'swing');
+      }
+  });
+
+  // Handle direct navigation with #hash (when someone lands on the page with a link like #section)
+  function scrollToHashOnLoad() {
+      if (window.location.hash) {
+          var $target = $(window.location.hash);
+          
+          if ($target.length) {
+              // Small delay so the page finishes rendering
+              setTimeout(function() {
+                  var scrollTo = $target.offset().top - offset;
+                  $('html, body').scrollTop(scrollTo);
+              }, 150);
+          }
+      }
+  }
+
+  // Run on initial page load
+  scrollToHashOnLoad();
+
+  // Also handle if user clicks the back/forward button and changes the hash
+  $(window).on('hashchange', scrollToHashOnLoad);
 });

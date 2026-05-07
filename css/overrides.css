@@ -1,0 +1,112 @@
+.visually-hidden {
+	visibility: hidden;
+	line-height: 0;
+	font-size: 0;
+}
+
+[class^="job-"] {
+  color: #444 !important;
+}
+
+.jobs-accordion .job-card:focus {
+	box-shadow: 0 8px 32px rgba(0, 0, 0, .12);
+}
+
+.single-post__title {
+	font-size: var(--wp--preset--font-size--x-large) !important;
+}
+
+.single-post__about-title {
+	font-size: var(--wp--preset--font-size--large) !important;
+}
+
+.wp-block-columns {
+  align-items: stretch;
+}
+
+.project-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-card .wp-block-button {
+  margin-top: auto;
+}
+
+.main__hero-greeting, .hero-lava-title {
+	font-size: clamp(2.5rem, 8vw, 4rem) !important;
+}
+
+@media (max-width: 700px) {
+    .hero-lava-title, .main__hero-greeting {
+        font-size: var(--wp--preset--font-size--large) !important;
+        padding: 1.2rem 0;
+    }
+	.has-large-font-size {
+		font-size: 1.8rem !important;
+	}
+}
+
+/* Portfolio code block styling */
+.wp-block-code {
+    position: relative;
+}
+/* Shared label styles */
+.wp-block-code.code-php::before,
+.wp-block-code.code-js::before,
+.wp-block-code.code-css::before,
+.wp-block-code.code-html::before {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    padding: 0.3rem 0.6rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-radius: 999px;
+}
+
+/* PHP (purple) */
+.wp-block-code.code-php::before {
+    content: "PHP";
+    background: #7c3aed; /* nice modern purple */
+    color: #fff;
+	opacity: 0.5;
+}
+
+/* JS (yellow) */
+.wp-block-code.code-js::before {
+    content: "JavaScript";
+    background: #facc15; /* softer yellow (not neon) */
+    color: #111; /* dark text for contrast */
+	opacity: 0.5;
+}
+
+/* CSS (blue) */
+.wp-block-code.code-css::before {
+    content: "CSS";
+    background: #2563eb; /* clean blue */
+    color: #fff;
+	opacity: 0.5;
+}
+
+/* HTML (orange) */
+.wp-block-code.code-html::before {
+    content: "HTML";
+    background: #ea580c; /* nice orange */
+    color: #fff;
+	opacity: 0.5;
+}
+
+/* ================================
+   Mobile Main Content Width Fix
+================================ */
+
+@media screen and (max-width: 1024px) {
+    main.main {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+}

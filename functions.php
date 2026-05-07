@@ -114,3 +114,17 @@ function register_job_post_type() {
 }
 add_action('init', 'register_job_post_type');
 
+/* Custom CSS Overrides */
+wp_enqueue_style(
+    'brutalist-portfolio-style',
+    get_template_directory_uri() . '/build/css/style.min.css',
+    array('aos'),
+    filemtime(get_template_directory() . '/build/css/style.min.css')
+);
+
+wp_enqueue_style(
+    'brutalist-portfolio-overrides',
+    get_template_directory_uri() . '/css/overrides.css',
+    array('brutalist-portfolio-style'),
+    filemtime(get_template_directory() . '/css/overrides.css')
+);
