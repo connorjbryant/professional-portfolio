@@ -264,6 +264,101 @@
     margin-bottom: 2px;
 }
 
+.cb-vshowcase__lightbox-open {
+    position: absolute;
+    left: 24px;
+    top: 24px;
+    z-index: 1000;
+    appearance: none;
+    -webkit-appearance: none;
+    border: 0 !important;
+    background: rgba(255, 255, 255, 0.92) !important;
+    color: var(--wp--preset--color--tertiary) !important;
+    cursor: pointer;
+    padding: 10px 14px !important;
+    border-radius: 999px !important;
+    font-size: 0.85rem;
+    font-weight: 700;
+    line-height: 1;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18) !important;
+}
+
+.cb-vshowcase__lightbox-open:hover {
+    transform: translateY(-1px);
+    background: #fff !important;
+}
+
+.cb-vshowcase__lightbox {
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 999999 !important;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 32px;
+    background: rgba(0, 0, 0, 0.92);
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.cb-vshowcase__lightbox.is-active {
+    display: flex;
+}
+
+.cb-vshowcase__lightbox-img {
+    max-width: 96vw;
+    max-height: 92vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    display: block;
+}
+
+.cb-vshowcase__lightbox-close {
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    z-index: 100000;
+    appearance: none;
+    -webkit-appearance: none;
+    width: 48px;
+    height: 48px;
+    border: 0 !important;
+    border-radius: 50% !important;
+    background: #fff !important;
+    color: #000 !important;
+    cursor: pointer;
+    font-size: 34px;
+    line-height: 1;
+    padding: 0 !important;
+}
+
+body.cb-lightbox-open {
+    overflow: hidden;
+}
+
+@media (max-width: 768px) {
+    .cb-vshowcase__lightbox-open {
+        left: 16px;
+        top: 16px;
+        font-size: 0.8rem;
+        padding: 9px 12px !important;
+    }
+
+    .cb-vshowcase__lightbox {
+        padding: 18px;
+    }
+
+    .cb-vshowcase__lightbox-close {
+        top: 16px;
+        right: 16px;
+        width: 44px;
+        height: 44px;
+        font-size: 30px;
+    }
+}
+
 /* MOBILE */
 @media (max-width: 768px) {
     .cb-vshowcase {
