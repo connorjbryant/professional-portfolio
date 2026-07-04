@@ -1,13 +1,29 @@
 <?php
 if (!defined('ABSPATH')) exit;
 
-$slides_query = new WP_Query([
+$query_args = [
     'post_type'      => 'showcase_slide',
     'post_status'    => 'publish',
     'posts_per_page' => -1,
     'orderby'        => 'menu_order',
     'order'          => 'ASC',
-]);
+];
+
+$showcase_group = isset($attributes['showcaseGroup'])
+    ? sanitize_text_field($attributes['showcaseGroup'])
+    : '';
+
+if ($showcase_group !== '') {
+    $query_args['tax_query'] = [
+        [
+            'taxonomy' => 'showcase_group',
+            'field'    => 'slug',
+            'terms'    => $showcase_group,
+        ],
+    ];
+}
+
+$slides_query = new WP_Query($query_args);
 
 if (!$slides_query->have_posts()) {
     return;

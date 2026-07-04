@@ -106,7 +106,7 @@ add_action('init', function () {
         wp_register_script(
             'theme-vertical-showcase-editor',
             $block_dir_uri . 'editor.js',
-            ['wp-blocks', 'wp-element', 'wp-i18n', 'wp-block-editor', 'wp-editor'],
+            ['wp-blocks', 'wp-element', 'wp-i18n', 'wp-block-editor', 'wp-components', 'wp-data'],
             theme_file_ver($editor_fs),
             true
         );
@@ -204,5 +204,20 @@ add_action('init', function () {
         'menu_icon' => 'dashicons-slides',
         'supports' => ['title', 'editor', 'excerpt', 'thumbnail', 'page-attributes'],
         'show_in_rest' => true,
+    ]);
+});
+
+add_action('init', function () {
+    register_taxonomy('showcase_group', ['showcase_slide'], [
+        'labels' => [
+            'name' => 'Showcase Groups',
+            'singular_name' => 'Showcase Group',
+        ],
+        'public' => false,
+        'show_ui' => true,
+        'show_admin_column' => true,
+        'show_in_rest' => true,
+        'hierarchical' => false,
+        'rewrite' => false,
     ]);
 });

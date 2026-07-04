@@ -12,6 +12,10 @@
     "kicker": {
       "type": "string",
       "default": "Vertical Showcase Slider"
+    },
+    "showcaseGroup": {
+      "type": "string",
+      "default": ""
     }
   },
   "editorScript": "theme-vertical-showcase-editor",
