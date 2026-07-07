@@ -215,3 +215,11 @@ add_action('init', function(){
         'label' => __('AOS Fade Up', 'brutalist-portfolio'),
     ]);
 });
+
+/* Design Overrides */
+wp_enqueue_style(
+    'brutalist-portfolio-overrides',
+    get_template_directory_uri() . '/css/overrides.css',
+    array('brutalist-portfolio-style'),
+    filemtime(get_template_directory() . '/css/overrides.css')
+);
