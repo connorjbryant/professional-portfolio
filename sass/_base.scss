@@ -188,36 +188,3 @@ body.single main {
   padding: 0;
   margin: 0;
 }
-
-.fr-aos-ready {
-  opacity: 0;
-  transform: translateY(28px);
-  transition:
-    opacity 700ms ease-out var(--fr-aos-delay, 0ms),
-    transform 700ms ease-out var(--fr-aos-delay, 0ms);
-}
-
-.fr-aos-ready.fr-aos-in {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.is-style-aos-fade-down.fr-aos-ready {
-  transform: translateY(-28px);
-}
-
-.is-style-aos-fade-left.fr-aos-ready {
-  transform: translateX(28px);
-}
-
-.is-style-aos-fade-right.fr-aos-ready {
-  transform: translateX(-28px);
-}
-
-.is-style-aos-zoom-in.fr-aos-ready {
-  transform: scale(0.94);
-}
-
-.is-style-aos-zoom-in.fr-aos-ready.fr-aos-in {
-  transform: scale(1);
-}

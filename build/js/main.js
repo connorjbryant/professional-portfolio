@@ -15,6 +15,7 @@ jQuery(function ($) {
       var $el = $(this);
 
       if ($el.hasClass('hero-blob-aos')) return;
+      if ($el.hasClass('fr-aos-ready')) return;
 
       $el
         .addClass('fr-aos-ready')
@@ -30,22 +31,31 @@ jQuery(function ($) {
           }
         });
       }, {
-        threshold: 0.1,
-        rootMargin: '0px 0px -30px 0px'
+        threshold: 0.05,
+        rootMargin: '0px 0px -10px 0px'
       });
 
-      document.querySelectorAll('.fr-aos-ready').forEach(function (el) {
+      document.querySelectorAll('.fr-aos-ready:not(.fr-aos-in)').forEach(function (el) {
         observer.observe(el);
+
+        var rect = el.getBoundingClientRect();
+
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
+          el.classList.add('fr-aos-in');
+          observer.unobserve(el);
+        }
       });
     } else {
       $('.fr-aos-ready').addClass('fr-aos-in');
     }
   }
 
-  $(window).on('load', function () {
+  function initThemeAnimations() {
     applyAOSBlockStyles();
 
-    if (window.AOS) {
+    if (window.AOS && !document.body.classList.contains('fr-aos-initialized')) {
+      document.body.classList.add('fr-aos-initialized');
+
       AOS.init({
         duration: 700,
         easing: 'ease-out',
@@ -56,18 +66,23 @@ jQuery(function ($) {
           return false;
         }
       });
-
-      setTimeout(function () {
-        applyAOSBlockStyles();
-        AOS.refreshHard();
-        $('.hero-blob-blob, .hero-blob-aos').css('opacity', '0.22');
-      }, 500);
-
-      setTimeout(function () {
-        AOS.refreshHard();
-        $('.hero-blob-blob, .hero-blob-aos').css('opacity', '0.22');
-      }, 1200);
     }
+
+    if (window.AOS) {
+      AOS.refreshHard();
+    }
+
+    $('.hero-blob-blob, .hero-blob-aos').css('opacity', '0.22');
+  }
+
+  initThemeAnimations();
+
+  $(window).on('load pageshow resize orientationchange', function () {
+    setTimeout(initThemeAnimations, 250);
+  });
+
+  window.addEventListener('pageshow', function () {
+    setTimeout(initThemeAnimations, 250);
   });
 
   /*
