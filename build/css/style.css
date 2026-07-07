@@ -1718,6 +1718,37 @@ body.single main {
   margin: 0;
 }
 
+.fr-aos-ready {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 700ms ease-out var(--fr-aos-delay, 0ms), transform 700ms ease-out var(--fr-aos-delay, 0ms);
+}
+
+.fr-aos-ready.fr-aos-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.is-style-aos-fade-down.fr-aos-ready {
+  transform: translateY(-28px);
+}
+
+.is-style-aos-fade-left.fr-aos-ready {
+  transform: translateX(28px);
+}
+
+.is-style-aos-fade-right.fr-aos-ready {
+  transform: translateX(-28px);
+}
+
+.is-style-aos-zoom-in.fr-aos-ready {
+  transform: scale(0.94);
+}
+
+.is-style-aos-zoom-in.fr-aos-ready.fr-aos-in {
+  transform: scale(1);
+}
+
 .jobs-accordion .job-card {
   margin-bottom: 2rem;
   border-radius: 10px;
@@ -2329,7 +2360,7 @@ body.single main {
   position: absolute;
   border-radius: 50%;
   filter: blur(32px);
-  opacity: 0.22;
+  opacity: 0.22 !important;
   mix-blend-mode: lighten;
   animation-duration: 16s;
   animation-iteration-count: infinite;
@@ -2411,5 +2442,53 @@ body.single main {
   }
   100% {
     transform: scale(1) translateY(0);
+  }
+}
+.hero-blob-aos {
+  opacity: 0.22 !important;
+}
+
+.hero-blob-aos.aos-init,
+.hero-blob-aos.aos-animate {
+  opacity: 0.22 !important;
+}
+
+.hero-blob-aos[data-aos^=zoom] {
+  opacity: 0.22 !important;
+}
+
+@media (max-width: 1024px) {
+  .hero-blob-blob,
+  .hero-blob-aos,
+  .hero-blob-aos.aos-init,
+  .hero-blob-aos.aos-animate {
+    opacity: 0.22 !important;
+  }
+}
+.hero-blob-blob,
+.hero-blob-aos,
+.hero-blob-aos.aos-init,
+.hero-blob-aos.aos-animate {
+  opacity: 0.22 !important;
+}
+
+/* Custom AOS animation that only changes scale, not opacity */
+[data-aos=blob-zoom] {
+  opacity: 0.22 !important;
+  transform: scale(0.85);
+  transition-property: transform;
+}
+
+[data-aos=blob-zoom].aos-animate {
+  opacity: 0.22 !important;
+  transform: scale(1);
+}
+
+@media (max-width: 1024px) {
+  .hero-blob-blob,
+  .hero-blob-aos,
+  [data-aos=blob-zoom],
+  [data-aos=blob-zoom].aos-animate {
+    opacity: 0.22 !important;
   }
 }

@@ -1,53 +1,16 @@
 <?php
 
 function brutalist_portfolio_enqueue_styles_scripts() {
+  wp_enqueue_style('aos', 'https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css', array(), null);
+  wp_enqueue_script('aos', 'https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js', array(), null, true);
 
-    // AOS CSS
-    wp_enqueue_style(
-        'aos',
-        'https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css',
-        array(),
-        null
-    );
+  wp_enqueue_script('jquery');
 
-    // Compiled theme CSS
-    wp_enqueue_style(
-        'brutalist-portfolio-style',
-        get_template_directory_uri() . '/build/css/style.min.css',
-        array('aos'),
-        filemtime(get_template_directory() . '/build/css/style.min.css')
-    );
+  wp_enqueue_script('jobs-accordion', get_template_directory_uri() . '/js/jobs-accordion.js', array('jquery'), null, true);
 
-    // jQuery
-    wp_enqueue_script('jquery');
-
-    // AOS JS
-    wp_enqueue_script(
-        'aos',
-        'https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js',
-        array(),
-        null,
-        true
-    );
-
-    // Compiled theme JS
-    wp_enqueue_script(
-        'theme-main',
-        get_template_directory_uri() . '/build/js/main.min.js',
-        array('jquery', 'aos'),
-        filemtime(get_template_directory() . '/build/js/main.min.js'),
-        true
-    );
-
-    // Only keep this separate if it is NOT included in your compiled build
-    wp_enqueue_script(
-        'jobs-accordion',
-        get_template_directory_uri() . '/js/jobs-accordion.js',
-        array('jquery'),
-        filemtime(get_template_directory() . '/js/jobs-accordion.js'),
-        true
-    );
+  wp_enqueue_script('brutalist-blocks', get_template_directory_uri() . '/js/custom-blocks.js', array('wp-blocks', 'wp-element', 'wp-editor', 'jquery'), null, true);
 }
+
 add_action('wp_enqueue_scripts', 'brutalist_portfolio_enqueue_styles_scripts');
 
 function brutalist_portfolio_setup() {
@@ -59,6 +22,24 @@ function brutalist_portfolio_setup() {
   ]);
 }
 add_action('after_setup_theme', 'brutalist_portfolio_setup');
+
+function brutalist_portfolio_enqueue_assets() {
+    wp_enqueue_style(
+        'brutalist-portfolio-style',
+        get_template_directory_uri() . '/build/css/style.min.css',
+        array('aos'),
+        filemtime(get_template_directory() . '/build/css/style.min.css')
+    );
+
+    wp_enqueue_script(
+        'theme-main',
+        get_template_directory_uri() . '/build/js/main.min.js',
+        array('jquery', 'aos'),
+        filemtime(get_template_directory() . '/build/js/main.min.js'),
+        true
+    );
+}
+add_action('wp_enqueue_scripts', 'brutalist_portfolio_enqueue_assets');
 
 // Register and enqueue hero-blob block editor.js for Gutenberg
 function brutalist_portfolio_register_block_editor_assets() {
@@ -176,20 +157,20 @@ function register_job_post_type() {
 }
 add_action('init', 'register_job_post_type');
 
-/* Custom CSS Overrides */
-wp_enqueue_style(
-    'brutalist-portfolio-style',
-    get_template_directory_uri() . '/build/css/style.min.css',
-    array('aos'),
-    filemtime(get_template_directory() . '/build/css/style.min.css')
-);
+add_action('wp_head', function () { ?>
+  <noscript>
+    <style>
+      /* If JS is off, never hide AOS elements */
+      [data-aos] { opacity: 1 !important; transform: none !important; }
 
-wp_enqueue_style(
-    'brutalist-portfolio-overrides',
-    get_template_directory_uri() . '/css/overrides.css',
-    array('brutalist-portfolio-style'),
-    filemtime(get_template_directory() . '/css/overrides.css')
-);
+      /* Accordion relies on JS toggling [hidden], reveal bodies without JS */
+      .js-job-card-body[hidden] { display: block !important; }
+
+      /* Remove any transitions that assume JS */
+      .projects-list [data-aos], .jobs-section [data-aos] { transition: none !important; }
+    </style>
+  </noscript>
+<?php });
 
 /* Vertical showcase CPT for vertical slider block */
 add_action('init', function () {
@@ -219,5 +200,18 @@ add_action('init', function () {
         'show_in_rest' => true,
         'hierarchical' => false,
         'rewrite' => false,
+    ]);
+});
+
+/* Block styles */
+add_action('init', function(){
+    register_block_style('core/columns', [
+        'name' => 'motion-cards',
+        'label' => __('Motion Cards', 'brutalist-portfolio'),
+    ]);
+
+    register_block_style('core/paragraph', [
+        'name' => 'aos-fade-up',
+        'label' => __('AOS Fade Up', 'brutalist-portfolio'),
     ]);
 });

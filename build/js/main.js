@@ -1,19 +1,111 @@
 // Main JS file for theme enhancements
-jQuery(document).ready(function($){
-  // Initialize AOS
-  if (window.AOS) {
-    AOS.init();
+jQuery(function ($) {
+
+  function applyAOSBlockStyles() {
+    var selectors = [
+      '.is-style-aos-fade-up',
+      '.is-style-aos-fade-down',
+      '.is-style-aos-fade-left',
+      '.is-style-aos-fade-right',
+      '.is-style-aos-zoom-in',
+      '.wp-block-columns.is-style-motion-cards > .wp-block-column'
+    ].join(',');
+
+    $(selectors).each(function (index) {
+      var $el = $(this);
+
+      if ($el.hasClass('hero-blob-aos')) return;
+
+      $el
+        .addClass('fr-aos-ready')
+        .css('--fr-aos-delay', Math.min(index * 100, 300) + 'ms');
+    });
+
+    if ('IntersectionObserver' in window) {
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('fr-aos-in');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -30px 0px'
+      });
+
+      document.querySelectorAll('.fr-aos-ready').forEach(function (el) {
+        observer.observe(el);
+      });
+    } else {
+      $('.fr-aos-ready').addClass('fr-aos-in');
+    }
   }
-  // Example: Smooth scroll for anchor links
-  $('a[href^="#"]').on('click', function(e) {
-    var target = $($(this).attr('href'));
-    if(target.length) {
-      e.preventDefault();
-      $('html, body').animate({ scrollTop: target.offset().top }, 600);
+
+  $(window).on('load', function () {
+    applyAOSBlockStyles();
+
+    if (window.AOS) {
+      AOS.init({
+        duration: 700,
+        easing: 'ease-out',
+        once: true,
+        offset: 10,
+        mirror: false,
+        disable: function () {
+          return false;
+        }
+      });
+
+      setTimeout(function () {
+        applyAOSBlockStyles();
+        AOS.refreshHard();
+        $('.hero-blob-blob, .hero-blob-aos').css('opacity', '0.22');
+      }, 500);
+
+      setTimeout(function () {
+        AOS.refreshHard();
+        $('.hero-blob-blob, .hero-blob-aos').css('opacity', '0.22');
+      }, 1200);
     }
   });
 
-  // Typewriter effect for bio section
+  /*
+   * Smooth anchor scrolling
+   */
+  var offset = 125;
+
+  $('a[href^="#"]').not('[href="#"]').on('click', function (e) {
+    var targetID = $(this).attr('href');
+    var $target = $(targetID);
+
+    if ($target.length) {
+      e.preventDefault();
+
+      $('html, body').stop(true).animate({
+        scrollTop: $target.offset().top - offset
+      }, 700, 'swing');
+    }
+  });
+
+  function scrollToHashOnLoad() {
+    if (!window.location.hash) return;
+
+    var $target = $(window.location.hash);
+
+    if ($target.length) {
+      setTimeout(function () {
+        $('html, body').scrollTop($target.offset().top - offset);
+      }, 150);
+    }
+  }
+
+  scrollToHashOnLoad();
+  $(window).on('hashchange', scrollToHashOnLoad);
+
+  /*
+   * Typewriter effect
+   */
   var words = [
     "full-stack development.",
     "custom WordPress themes.",
@@ -22,108 +114,82 @@ jQuery(document).ready(function($){
     "performance optimization.",
     "responsive design.",
     "web accessibility."
-  ];  
-  
-  var el = document.getElementById('typewriter');
-  if (el) {
-    // If the parent contains the static text, remove it from JS
-    // Only animate the phrase
-    // (No change needed here, but update HTML to include static text before the span)
+  ];
 
-    var wordIndex = 0, charIndex = 0, isDeleting = false;
-    // Create a span for the blinking cursor
+  var el = document.getElementById('typewriter');
+
+  if (el) {
+    var wordIndex = 0;
+    var charIndex = 0;
+    var isDeleting = false;
+
     var cursor = document.createElement('span');
     cursor.className = 'typewriter-cursor';
     cursor.textContent = '|';
+
     el.textContent = '';
     el.appendChild(cursor);
 
-    var prevDisplay = '';
     function type() {
       var current = words[wordIndex];
       var display = current.substring(0, charIndex);
-      // Only update if text changes
-      if (el.firstChild.nodeType === 3) {
+
+      if (el.firstChild && el.firstChild.nodeType === 3) {
         el.removeChild(el.firstChild);
       }
-      if (prevDisplay !== display) {
-        el.insertBefore(document.createTextNode(display), cursor);
-        prevDisplay = display;
-      }
+
+      el.insertBefore(document.createTextNode(display), cursor);
+
       if (!isDeleting && charIndex < current.length) {
         charIndex++;
-        setTimeout(() => requestAnimationFrame(type), 100);
+        setTimeout(function () {
+          requestAnimationFrame(type);
+        }, 100);
       } else if (isDeleting && charIndex > 0) {
         charIndex--;
-        setTimeout(() => requestAnimationFrame(type), 70); // slightly slower backspace
+        setTimeout(function () {
+          requestAnimationFrame(type);
+        }, 70);
       } else {
         if (!isDeleting) {
           isDeleting = true;
-          setTimeout(() => requestAnimationFrame(type), 1200); // Pause before deleting
+          setTimeout(function () {
+            requestAnimationFrame(type);
+          }, 1200);
         } else {
           isDeleting = false;
           wordIndex = (wordIndex + 1) % words.length;
-          setTimeout(() => requestAnimationFrame(type), 400);
+
+          setTimeout(function () {
+            requestAnimationFrame(type);
+          }, 400);
         }
       }
     }
-    // CSS for cursor blink
-    var style = document.createElement('style');
-    style.innerHTML = `.typewriter-cursor { display: inline-block; animation: blink 1s steps(1) infinite; }
-    @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0; } }`;
-    document.head.appendChild(style);
 
     requestAnimationFrame(type);
-  }  
-  // Enhance ACF details field: split by spaces, wrap each in styled span
-  var $details = $('.js-acf-details');
-  var $details = $('.acf-details');
+  }
+
+  /*
+   * Enhance ACF details field
+   */
+  var $details = $('.js-acf-details, .acf-details');
+
   if ($details.length) {
-    var text = $details.text().trim();
-    var words = text.split(/\s+/).filter(Boolean);
-    var html = words.map(function(word) {
-      return '<span class="acf-details__item">' + word + '</span>';
-    }).join(' ');
-    $details.html(html);
+    $details.each(function () {
+      var $el = $(this);
+      var text = $el.text().trim();
+
+      if (!text) return;
+
+      var detailWords = text.split(/\s+/).filter(Boolean);
+
+      var html = detailWords.map(function (word) {
+        return '<span class="acf-details__item">' + word + '</span>';
+      }).join(' ');
+
+      $el.html(html);
+    });
   }
 
-  /* Custom anchor link scrolling */
-  var offset = 125;
-
-  // Handle clicks on anchor links
-  $('a[href^="#"]').not('[href="#"]').on('click', function(e) {
-      var $target = $($(this).attr('href'));
-      
-      if ($target.length) {
-          e.preventDefault();
-          e.stopImmediatePropagation();
-
-          var scrollTo = $target.offset().top - offset;
-
-          $('html, body').stop(true).animate({
-              scrollTop: scrollTo
-          }, 700, 'swing');
-      }
-  });
-
-  // Handle direct navigation with #hash (when someone lands on the page with a link like #section)
-  function scrollToHashOnLoad() {
-      if (window.location.hash) {
-          var $target = $(window.location.hash);
-          
-          if ($target.length) {
-              // Small delay so the page finishes rendering
-              setTimeout(function() {
-                  var scrollTo = $target.offset().top - offset;
-                  $('html, body').scrollTop(scrollTo);
-              }, 150);
-          }
-      }
-  }
-
-  // Run on initial page load
-  scrollToHashOnLoad();
-
-  // Also handle if user clicks the back/forward button and changes the hash
-  $(window).on('hashchange', scrollToHashOnLoad);
 });
