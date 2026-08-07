@@ -182,3 +182,82 @@
 .is-style-aos-zoom-in.fr-aos-ready.fr-aos-in {
   transform: scale(1);
 }
+
+/* ------------------------------
+  Portfolio Code Examples
+------------------------------ */
+
+.portfolio-code-example {
+  margin-top: 1rem;
+  border: 1px solid #d0d7de;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.portfolio-code-example summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  list-style: none;
+  cursor: pointer;
+  padding: 0.9rem 1rem;
+  font-weight: 600;
+  background: #f6f8fa;
+  transition: background .2s ease;
+  user-select: none;
+}
+
+.portfolio-code-example summary:hover {
+  background: #eef2f6;
+}
+
+.portfolio-code-example summary::-webkit-details-marker {
+  display: none;
+}
+
+.portfolio-code-example summary::before {
+  content: "▶";
+  display: inline-block;
+  margin-right: .6rem;
+  transition: transform .2s ease;
+  font-size: .8rem;
+}
+
+.portfolio-code-example[open] summary::before {
+  transform: rotate(90deg);
+}
+
+.portfolio-code-example pre {
+  margin: 0;
+  padding: 1.25rem;
+  overflow-x: auto;
+
+  background: #0d1117;
+  color: #c9d1d9;
+
+  font-family:
+    Consolas,
+    Monaco,
+    "Courier New",
+    monospace;
+
+  font-size: .9rem;
+  line-height: 1.7;
+}
+
+.portfolio-code-example code {
+  font-family: inherit;
+}
+
+.portfolio-code-language {
+  padding: 0.2rem 0.5rem;
+  border: 1px solid #d0d7de;
+  border-radius: 999px;
+  font-family: Consolas, Monaco, "Courier New", monospace;
+  font-size: 0.72rem;
+  font-weight: 600;
+  line-height: 1;
+  text-transform: uppercase;
+}
